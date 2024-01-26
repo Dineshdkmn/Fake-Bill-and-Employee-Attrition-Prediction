@@ -1,0 +1,180 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <style>
+        /* Background image and color */
+        body {
+            background-image: url("https://media.istockphoto.com/id/1346882936/photo/businesswoman-hand-sending-a-resignation-letter-to-executive-boss-letter-of-resignation.jpg?s=1024x1024&w=is&k=20&c=74xSwI3Q-6_Z6rWepdlmNiRUZkcJ-wK0ByqyutJoqtA="); /* Replace 'your-background-image.jpg' with your image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            /* Fallback color if the image doesn't load */
+        }
+
+        /* Form background color and text color */ 
+        .container {
+            background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white background for the form container */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .text-right {
+            font-size: 30px;
+            color:black;
+            font-family: 'Times New Roman', Times, serif;
+        }
+       /* .text-center {
+            font-style: bold;
+            font-size: 190%;
+            color:darkblue;
+        }*/
+        .text-left {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 50px;
+            color:brown;
+        }
+        /* Form button color */
+        .btn-primary {
+            background-color: #007bff; /* Blue color for the "Predict" button */
+        }
+
+        /* Result text color */
+        .result {
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for the form container */
+            padding: 20px;
+            border-radius: 10px
+             
+        }
+        h1 {
+            color:rgb(85, 232, 203);
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 100px;
+            font-style: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1> WILL EMPLOYEE QUIT THE JOB OR NOT PREDICTION</h1>
+    <div class="container mt-5">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group row">
+                <label for="stag" class="col-sm-6 col-form-label text-right">Enter the Experience(Time):</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="stag" name="stag">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="age" class="col-sm-6 col-form-label text-right">Enter the Employer's Age:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="age" name="age">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="industry" class="col-sm-6 col-form-label text-right">Enter the Industry[0-15] :</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="industry" name="industry">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="profession" class="col-sm-6 col-form-label text-right">Enter the Profession[0-14]:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="profession" name="profession">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="traffic" class="col-sm-6 col-form-label text-right">Enter the Traffic[0-7]:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="traffic" name="traffic">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="coach" class="col-sm-6 col-form-label text-right">Enter the Coach[0-2]:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="coach" name="coach">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="greywage" class="col-sm-6 col-form-label text-right">Enter the Greywage[0-1]:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="greywage" name="greywage">
+                </div>
+            </div>
+            <div class="form-group row">
+              <label for="way" class="col-sm-6 col-form-label text-right">Enter the Way[0-2]:</label>
+              <div class="col-sm-6">
+                  <input type="text" class="form-control" id="way" name="way">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="extraversion" class="col-sm-6 col-form-label text-right">Enter the Extraversion[0-10]:</label>
+              <div class="col-sm-6">
+                  <input type="text" class="form-control" id="extraversion" name="extraversion">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="independ" class="col-sm-6 col-form-label text-right">Enter the Independancy[0-10]:</label>
+              <div class="col-sm-6">
+                  <input type="text" class="form-control" id="independ" name="independ">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="selfcontrol" class="col-sm-6 col-form-label text-right">Enter the Self-Control[0-10]:</label>
+              <div class="col-sm-6">
+                  <input type="text" class="form-control" id="selfcontrol" name="selfcontrol">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="anxiety" class="col-sm-6 col-form-label text-right">Enter the Anxiety[0-10]:</label>
+              <div class="col-sm-6">
+                  <input type="text" class="form-control" id="anxiety" name="anxiety">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="novator" class="col-sm-6 col-form-label text-right">Enter the Novator[0-10]:</label>
+              <div class="col-sm-6">
+                  <input type="text" class="form-control" id="novator" name="novator">
+              </div>
+            </div>
+            <!-- ... (Rest of your form elements) ... -->
+
+            <div class="form-group row">
+                <div class="col-sm-6 offset-sm-6">
+                    <button type="submit" class="btn btn-primary" name="Submit">Predict</button>
+                </div>
+            </div>
+        </form>
+        <div class="row mt-3">
+            <div class="col-sm-6 offset-sm-6">
+                <p class="text-left">The Event Is:</p>
+                <p class="result text-center">{{result}}</p>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-sm-6 offset-sm-6">
+                <p class="text-left">Model Accuracy Is:</p>
+                <p class="result text-center">{{acc}}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+{% endblock %}

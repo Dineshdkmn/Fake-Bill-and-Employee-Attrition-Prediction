@@ -1,0 +1,139 @@
+{% extends 'Index.html' %}
+
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Add Bootstrap CSS link -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <style>
+        /* Background image and color */
+        body {
+            background-image: url('https://media.istockphoto.com/id/1050855182/photo/robot-examining-invoice.jpg?s=1024x1024&w=is&k=20&c=ZaqmjsFIkOJrxyjATFkDUh9mCdpRO_8rgBiNTueWQnk='); /* Replace 'your-background-image.jpg' with your image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed; 
+            /* Fallback color if the image doesn't load */
+        }
+
+        /* Form background color and text color */
+        .container {
+            background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white background for the form container */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .text-right {
+            font-size: 30px;
+            color:black;
+            font-family: 'Times New Roman', Times, serif;
+        }
+       /* .text-center {
+            font-style: bold;
+            font-size: 190%;
+            color:darkblue;
+        }*/
+        .text-left {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 50px;
+            color:brown;
+        }
+        /* Form button color */
+        .btn-primary {
+            background-color: #007bff; /* Blue color for the "Predict" button */
+        }
+
+        /* Result text color */
+        .result {
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for the form container */
+            padding: 20px;
+            border-radius: 10px
+             
+        }
+        h1 {
+            color:rgb(85, 232, 203);
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 100px;
+            font-style: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>FAKEBILL PREDICTION</h1>
+       <div class="container mt-5">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group row">
+                <label for="diagonal" class="col-sm-6 col-form-label text-right">Enter the Diagonal Value:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="diagonal" name="diagonal">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="height_left" class="col-sm-6 col-form-label text-right">Enter the Height of the Bill(Left):</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="height_left" name="height_left">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="height_right" class="col-sm-6 col-form-label text-right">Enter the Height of the Bill(Right) :</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="height_right" name="height_right">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="margin_low" class="col-sm-6 col-form-label text-right">Enter the Margin of the Bill(Low):</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="margin_low" name="margin_low">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="margin_up" class="col-sm-6 col-form-label text-right">Enter the Margin of the Bill(Up):</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="margin_up" name="margin_up">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="length" class="col-sm-6 col-form-label text-right">Enter the Length of the Bill:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="length" name="length">
+                </div>
+            </div>
+
+            <!-- ... (Rest of your form elements) ... -->
+
+            <div class="form-group row">
+                <div class="col-sm-6 offset-sm-6">
+                    <button type="submit" class="btn btn-primary" name="Submit">Predict</button>
+                </div>
+            </div>
+        </form>
+        <div class="row mt-3">
+            <div class="col-sm-6 offset-sm-6">
+                <p class="text-left">The Event Is:</p>
+                <p class="result text-center">{{result}}</p>
+            </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-sm-6 offset-sm-6">
+              <p class="text-left">Model Accuracy Is:</p>
+              <p class="result text-center">{{acc}}</p>
+          </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and Popper.js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+{% endblock %}
